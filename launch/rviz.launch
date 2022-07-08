@@ -21,7 +21,7 @@
 	</node>
 
 	<!-- run rviz -->
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_conf) -f trunk"/>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_conf) -f anchor"/>
 
 </launch>
 

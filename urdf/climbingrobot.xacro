@@ -1,32 +1,95 @@
 <?xml version="1.0" ?>
-<robot name="climber">
+<robot name="climbingrobot" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- This file is based on: https://atlas.is.localnet/confluence/display/AMDW/Quadruped+URDF+Files -->
 
-  <link name="mountain">
+    <!--- new_gazebo_version should be false by default because pinocchio needs it!-->
+    <xacro:arg name="robot_name" default="climbingrobot"/> 
+    <xacro:arg name="new_gazebo_version" default="false"/>	
+
+
+    <xacro:include filename="$(find climbingrobot_description)/gazebo/gazebo.urdf.xacro">
+        <xacro:arg name="task_period" value="$(arg task_period)"/>
+	<xacro:arg name="robot_name" value="$(arg robot_name)"/>
+    </xacro:include>
+
+
+    <xacro:include filename="$(find climbingrobot_description)/urdf/climbingrobot.transmission.xacro"/>
+
+
+ 	<link name="world"/>
+
+ 	<joint name="anchor_x_joint" type="prismatic">
+		<parent link="world"/>
+		<child link="fake_link1"/>
+		<axis xyz="1 0 0 "/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
+
+	</joint> 
+
+	<link name="fake_link1">
+	<inertial>
+	<mass value="0.00001"/>
+	<inertia ixx="5.8083e-4" ixy="0" ixz="0" iyy="3.0833e-5" iyz="0" izz="5.9083e-4"/>
+	</inertial>
+	</link> 
+
+
+
+	<joint name="anchor_y_joint" type="prismatic">
+		<parent link="fake_link1"/>
+		<child link="fake_link2"/>
+		<axis xyz="0 1 0 "/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
+
+	</joint> 
+
+	<link name="fake_link2">
+	<inertial>
+	<mass value="0.00001"/>
+	<inertia ixx="5.8083e-4" ixy="0" ixz="0" iyy="3.0833e-5" iyz="0" izz="5.9083e-4"/>
+	</inertial>
+	</link> 
+
+
+	<joint name="anchor_z_joint" type="prismatic">
+		<parent link="fake_link2"/>
+		<child link="anchor"/>
+		<axis xyz="0 0 1 "/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
+
+	</joint> 
+
+
+
+  <link name="anchor">
     <!--<visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/cube.obj" scale="0.01 10.0 10.0"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/cube.obj" scale="0.01 10.0 10.0"/>
       </geometry>
       <material name="ground">
         <color rgba=".9 .1 .1 .5"/>
       </material>
     </visual>-->
-    <collision>
+    <!-- TODO manage wall collision-->
+    <!--collision>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <geometry>
         <box size="0.1 10.0 10.0"/>
       </geometry>
-    </collision>
+    </collision-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <mass value="1000.0"/>
-      <inertia ixx="10.0" ixy="0.0" ixz="0.0" iyy="10.0" iyz="0.0" izz="10.0"/>
+      <mass value="1.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
   </link>
   <!-- Revolute pitch joint between the mountain and the wire -->
   <joint name="mountain_wire_pitch" type="revolute">
-    <parent link="mountain"/>
+    <parent link="anchor"/>
     <child link="pre-wire1"/>
     <limit effort="3" lower="-10" upper="10" velocity="1000"/>
     <!-- joint rotates about y axis -->
@@ -41,7 +104,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/cylinder.obj" scale="0.01 0.01 0.01"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/cylinder.obj" scale="0.01 0.01 0.01"/>
       </geometry>
       <material name="grey">
         <color rgba=".7 .7 .7 .5"/>
@@ -76,7 +139,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/cylinder.obj" scale="0.01 0.01 0.01"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/cylinder.obj" scale="0.01 0.01 0.01"/>
       </geometry>
       <material name="grey">
         <color rgba=".7 .7 .7 .5"/>
@@ -108,21 +171,7 @@
 
 
   <link name="wire">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 -2"/>
-      <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/cylinder.obj" scale="0.01 0.01 4.0"/>
-      </geometry>
-      <material name="grey">
-        <color rgba=".7 .7 .7 .5"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <geometry>
-        <cylinder length="4" radius="0.01"/>
-      </geometry>
-    </collision>
+    
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
@@ -136,27 +185,13 @@
     <limit effort="3" lower="-10" upper="10" velocity="1000"/>
     <!-- joint translates on x axis -->
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 -2.0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 -1.0"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 
   <link name="pre-base1">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/cylinder.obj" scale="0.01 0.01 0.01"/>
-      </geometry>
-      <material name="grey">
-        <color rgba=".7 .7 .7 .5"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <geometry>
-        <cylinder length="0.01" radius="0.01"/>
-      </geometry>
-    </collision>
+ 
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
@@ -176,22 +211,7 @@
   </joint>
 
   <link name="pre-base2">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/cylinder.obj" scale="0.01 0.01 0.01"/>
-      </geometry>
-      <material name="grey">
-        <color rgba=".7 .7 .7 .5"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <geometry>
-        <cylinder length="0.01" radius="0.01"/>
-      </geometry>
-    </collision>
-    <inertial>
+     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
@@ -210,21 +230,8 @@
   </joint>
 
   <link name="pre-base3">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/cylinder.obj" scale="0.01 0.01 0.01"/>
-      </geometry>
-      <material name="grey">
-        <color rgba=".7 .7 .7 .5"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <geometry>
-        <cylinder length="0.01" radius="0.01"/>
-      </geometry>
-    </collision>
+
+   
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
@@ -234,7 +241,7 @@
   <!-- Revolute yaw joint between the wire and the base -->
   <joint name="wire_base_yaw" type="revolute">
     <parent link="pre-base3"/>
-    <child link="base"/>
+    <child link="base_link"/>
     <limit effort="3" lower="-10" upper="10" velocity="1000"/>
     <!-- joint rotates about z axis -->
     <axis xyz="0 0 1"/>
@@ -245,7 +252,7 @@
 
 
 
-  <link name="base">
+  <link name="base_link">
     <!-- BASE LINK INERTIAL -->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -258,7 +265,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_body.obj" scale="1 1 1"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_body.obj" scale="1 1 1"/>
       </geometry>
       <material name="red">
         <color rgba="0.749 0.380 0.410 1.0"/>
@@ -268,7 +275,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_body.obj" scale="1 1 1"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_body.obj" scale="1 1 1"/>
       </geometry>
     </collision>
     <!-- Bullet specific paramters -->
@@ -280,7 +287,7 @@
   <!-- END BASE LINK -->
   <!-- Joint between the base and the ${prefix} upper leg -->
   <joint name="hip_pitch" type="revolute">
-    <parent link="base"/>
+    <parent link="base_link"/>
     <child link="upper_link1"/>
     <limit effort="3" lower="-10" upper="10" velocity="1000"/>
     <!-- joints rotates around the y-axis -->
@@ -300,7 +307,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
       </geometry>
       <material name="grey">
         <color rgba="0.8 0.8 0.8 1.0"/>
@@ -310,7 +317,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
       </geometry>
         <material name="white">
         	<color rgba="0.898 0.913 0.941 1.0"/>
@@ -344,7 +351,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
       </geometry>
       <material name="grey">
         <color rgba="0.7 0.7 0.7 0.5"/>
@@ -354,7 +361,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
       </geometry>
         <material name="white">
         	<color rgba="0.898 0.913 0.941 1.0"/>
@@ -390,7 +397,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_lower_leg_left_side.obj" scale="1 1 1.5"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_lower_leg_left_side.obj" scale="1 1 1.5"/>
       </geometry>
         <material name="white">
         	<color rgba="0.898 0.913 0.941 1.0"/>
@@ -400,7 +407,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_lower_leg_left_side.obj"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_lower_leg_left_side.obj"/>
       </geometry>
       <material name="grey">
         <color rgba="0.7 0.7 0.7 0.5"/>
@@ -435,7 +442,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_foot.obj"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_foot.obj"/>
       </geometry>
 	<material name="black">
 		<color rgba="0.263 0.298 0.369 1"/>
@@ -445,7 +452,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://model/urdf/meshes/obj/with_foot/solo_foot.obj"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_foot.obj"/>
       </geometry>
       <material name="grey">
         <color rgba="0.7 0.7 0.7 0.5"/>
@@ -459,4 +466,8 @@
   </link>
   <!-- END LOWER LEG LINK -->
   <!-- Joint between the base and the ${prefix} upper leg -->
+
+
+   <xacro:climbingrobot_transmission/>
+
 </robot>
