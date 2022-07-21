@@ -4,39 +4,7 @@
 
         <xacro:macro name="climbingrobot_transmission">
 
-		<transmission name="anchor_x_joint">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="anchor_x_joint">
-                                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="anchor_x_joint">
-                                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-                                <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                </transmission>
-
-
-		<transmission name="anchor_y_joint">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="anchor_y_joint">
-                                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="anchor_y_joint">
-                                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-                                <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                </transmission>
-
-		<transmission name="anchor_z_joint">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="anchor_z_joint">
-                                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="anchor_z_joint">
-                                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-                                <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                </transmission>
+		
 
 
 
