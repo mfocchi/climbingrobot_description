@@ -31,21 +31,11 @@
 
   <link name="anchor">
     <visual>
-      <origin rpy="0. -0.1 0" xyz="-0.25 0 ${-$(arg anchorZ)/2.0}"/>
-      <geometry>
-         <box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
-      </geometry>
-      <material name="ground">
-        <color rgba="0. 1 0"/>
-      </material>
+	<geometry>
+         <sphere radius="0.03" />
+	</geometry>
     </visual>
      
-    <collision>
-      <origin rpy="0 -0.1 0" xyz="-0.25 0  ${-$(arg anchorZ)/2.0}"/>
-      <geometry>
-        <box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
-      </geometry>
-    </collision>
 
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
