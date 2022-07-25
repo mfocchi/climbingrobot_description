@@ -213,7 +213,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <!-- <mass value="0.36"/> -->
-      <mass value="1.0"/>
+      <mass value="5.0"/>
       <!-- The base is extremely symmetrical. -->
       <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
     </inertial>
@@ -249,7 +249,7 @@
     <child link="upper_link1"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joints rotates around the y-axis -->
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 -1 0"/>
     <origin rpy="0 0 0" xyz="0.0 -0.02 0.025"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
@@ -293,7 +293,7 @@
     <child link="upper_link2"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joints rotates around the y-axis -->
-    <axis xyz="1 0 0"/>
+    <axis xyz="-1 0 0"/>
     <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
