@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="climb_wall" xmlns:xacro="http://ros.org/wiki/xacro">
 
-   <xacro:arg name="anchorZ" default="1."/>
+ <material name="Black">
+    <color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
+  </material>
+
+<xacro:arg name="anchorZ" default="1."/>
 
 	<link name="wall">
 		<inertial>
@@ -9,8 +13,9 @@
  	        <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
   	     </inertial>
 
-		<visual name="box">
+		<visual > <!-- dont put name otherwise gazebo discards color-->
  			<origin xyz="0 0 ${$(arg anchorZ)/2}"/>
+			<material name="Black"/> <!-- rviz will use this color -->
 			<geometry>
 				<box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
 			</geometry>
