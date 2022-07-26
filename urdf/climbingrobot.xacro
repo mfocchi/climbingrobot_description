@@ -29,7 +29,7 @@
    
 
 
-  <link name="anchor">
+   <link name="anchor">
     <visual>
 	<geometry>
          <sphere radius="0.03" />
@@ -39,8 +39,8 @@
 
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <mass value="10.0"/>
-      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
     </inertial>
   </link>
 
@@ -132,7 +132,7 @@
   <link name="wire">    
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <mass value="0.5"/>
+      <mass value="0.01"/>
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
     </inertial>
   </link>
@@ -215,7 +215,7 @@
       <!-- <mass value="0.36"/> -->
       <mass value="5.0"/>
       <!-- The base is extremely symmetrical. -->
-      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
     </inertial>
     <!-- BASE LINK VISUAL -->
     <visual>
@@ -258,8 +258,8 @@
     <!-- Left upper leg inertia -->
     <inertial>
       <origin rpy="0 0 0" xyz="0.0000 0.0 -0.0"/>
-      <mass value="0.01"/>
-      <inertia ixx="0.00041107" ixy="0.0" ixz="0.0" iyy="0.00041193" iyz="0.00004671" izz="0.00003024"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.00004671" izz="0.01"/>
     </inertial>
     <!-- UPPER LEG LINK VISUAL 
     <visual>
@@ -302,8 +302,8 @@
     <!-- Left upper leg inertia -->
     <inertial>
       <origin rpy="0 0 0" xyz="0.0000 0.0 -0.0"/>
-      <mass value="0.14853845"/>
-      <inertia ixx="0.00041107" ixy="0.0" ixz="0.0" iyy="0.00041193" iyz="0.00004671" izz="0.00003024"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.00004671" izz="0.01"/>
     </inertial>
     <!-- UPPER LEG LINK VISUAL -->
     <visual>
@@ -348,8 +348,8 @@
     <!-- Left lower leg inertia -->
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 -0.09"/>
-      <mass value="0.0307"/>
-      <inertia ixx="0.00012024" ixy="0.0" ixz="0.0" iyy="0.00012029" iyz="0.00000305" izz="0.00000216"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.00000305" izz="0.01"/>
     </inertial>
     <!-- LOWER LEG LINK VISUAL -->
     <visual>
