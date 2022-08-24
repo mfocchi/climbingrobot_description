@@ -179,7 +179,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <!-- <mass value="0.36"/> -->
-      <mass value="5.0"/>
+      <mass value="3.47"/>
       <!-- The base is extremely symmetrical. -->
       <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
     </inertial>
