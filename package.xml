@@ -13,5 +13,7 @@
   <maintainer email="X@Y.it">XX</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
+	
+  <exec_depend>gazebo_ros</exec_depend>
 
 </package>
