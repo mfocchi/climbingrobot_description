@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 	<arg name="task_period" default="0.004"/>
-	<arg name="spawn_z" default="2.0" />
+	<arg name="spawn_z" default="20.0" />
         <!-- send hyq urdf to param server -->
         <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/climbingrobot.xacro' task_period:=$(arg task_period)"/>
 

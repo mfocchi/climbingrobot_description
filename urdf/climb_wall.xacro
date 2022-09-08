@@ -5,13 +5,16 @@
     <color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
   </material>
 
+ <material name="Red">
+    <color rgba="${255/255} ${0/255} ${0/255} 1.0"/>
+  </material>
 
  <!--https://www.textures.com/browse/cliffs/2060 -->
 
 
+<xacro:arg name="obstacle" default="true"/>	
 
-
-<xacro:arg name="anchorZ" default="1."/>
+<xacro:arg name="anchorZ" default="10."/>
 
 
 
@@ -60,6 +63,51 @@
 	       </collision>
 
 	</link>
+
+
+	<xacro:if value="$(arg obstacle)">
+	
+
+	<gazebo reference="pillar">
+   	 <material>Gazebo/RockWall</material>
+  	</gazebo>
+
+	  <joint name="base" type="fixed">
+	    <parent link="wall"/>
+	    <child link="pillar"/>
+	    <origin rpy="0 0 0" xyz="0 0.0 0"/>
+	  </joint>
+
+		<link name="pillar">
+		<inertial>
+ 	        <mass value="10"/>
+ 	        <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+  	        </inertial>
+
+		<visual > <!-- dont put name otherwise gazebo discards color-->
+ 			<origin xyz="0 2 0"/>
+		        <geometry>
+                          <mesh filename="package://climbingrobot_description/meshes/cone.stl" scale="1 1 1"/>
+                        </geometry>
+			<material name="Red"/><!--rviz"/-->
+			
+		</visual>
+	        <collision>
+		       <origin xyz="0 2 0"/>
+		  	 <origin xyz="0 0 0"/>
+		        <geometry>
+                          <mesh filename="package://climbingrobot_description/meshes/cone.stl" scale="1 1 1"/>
+                        </geometry>
+
+	       </collision>
+
+	</link>
+
+	</xacro:if>
+
+
+	
+
 	<gazebo>
 	    <static>true</static>
 	</gazebo>
@@ -69,5 +117,6 @@
 	<gazebo reference="wall">
    	 <material>Gazebo/RockWall</material>
   	</gazebo>
+
 
 </robot>

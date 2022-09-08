@@ -6,7 +6,7 @@
     <xacro:arg name="robot_name" default="climbingrobot"/> 
     <xacro:arg name="new_gazebo_version" default="false"/>	
     <xacro:arg name="anchorZ" default="1."/>	
-	
+
 
     <xacro:include filename="$(find climbingrobot_description)/gazebo/gazebo.urdf.xacro">
         <xacro:arg name="task_period" value="$(arg task_period)"/>
@@ -49,7 +49,7 @@
     <parent link="anchor"/>
     <child link="pre_wire1"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
-    <!-- joint rotates about y axis -->
+    <!-- joint rotates about -y axis -->
     <axis xyz="0 -1 0"/>
     <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
     <!-- pybullet simulation parameters -->

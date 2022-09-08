@@ -14,6 +14,9 @@
 
 	<node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args="-0.2 0 0 0 0 0   /wall /world  200"/>
 
+	<node pkg="tf" type="static_transform_publisher" name="pillar_broadcaster" args="0 0 0 0 0 0   /pillar /wall  200"/>
+
+
    	<!-- joint_state_publisher publish joint states from sliders-->
         <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
 
