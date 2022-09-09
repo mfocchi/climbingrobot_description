@@ -9,8 +9,7 @@
 	<env name="GAZEBO_MODEL_PATH" value="$(find climbingrobot_description)"/>
 
 	<!-- send hyq urdf to param server and spawn it -->
-	<include file="$(find climbingrobot_description)/launch/upload.launch">
-	</include>
+	<include file="$(find climbingrobot_description)/launch/upload.launch">	</include>
 
 	<node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args="-0.2 0 0 0 0 0   /wall /world  200"/>
 

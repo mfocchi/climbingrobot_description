@@ -6,7 +6,7 @@
   </material>
 
  <material name="Red">
-    <color rgba="${255/255} ${0/255} ${0/255} 1.0"/>
+    <color rgba="${255/255} ${100/255} ${0/255} 1.0"/>
   </material>
 
  <!--https://www.textures.com/browse/cliffs/2060 -->
@@ -15,8 +15,8 @@
 <xacro:arg name="obstacle" default="true"/>	
 
 <xacro:arg name="anchorZ" default="10."/>
-
-
+<xacro:arg name="pillar_posX" default="0"/>	
+<xacro:arg name="pillar_posY" default="1.5"/>
 
 
 	<link name="wall">
@@ -85,7 +85,7 @@
   	        </inertial>
 
 		<visual > <!-- dont put name otherwise gazebo discards color-->
- 			<origin xyz="0 2 0"/>
+ 			<origin xyz="0  $(arg pillar_posY) 0"/>
 		        <geometry>
                           <mesh filename="package://climbingrobot_description/meshes/cone.stl" scale="1 1 1"/>
                         </geometry>
@@ -93,7 +93,7 @@
 			
 		</visual>
 	        <collision>
-		       <origin xyz="0 2 0"/>
+		       <origin xyz="0   $(arg pillar_posY) 0"/>
 		  	 <origin xyz="0 0 0"/>
 		        <geometry>
                           <mesh filename="package://climbingrobot_description/meshes/cone.stl" scale="1 1 1"/>
