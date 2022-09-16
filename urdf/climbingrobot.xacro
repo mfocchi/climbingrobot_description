@@ -26,23 +26,42 @@
         <child link="anchor"/>
     </joint>
 
-   
-
-
-   <link name="anchor">
+    <link name="anchor">
     <visual>
 	<geometry>
-         <sphere radius="0.03" />
+         <sphere radius="0.4" />
 	</geometry>
     </visual>
      
-
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
       <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
     </inertial>
   </link>
+
+
+
+<!--
+
+    <joint name="target_link" type="fixed">
+        <origin rpy="0 0 0" xyz=" 3.   3. 0."/>
+        <parent link="world"/>
+        <child link="target"/>
+    </joint>-->
+<!--
+    <link name="target">
+    <visual>
+	<geometry>
+         <sphere radius="0.4" />
+	</geometry>
+    </visual>-->
+  <!--<inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>-->
 
   <!-- Revolute pitch joint between the mountain and the wire -->
   <joint name="mountain_wire_pitch" type="revolute">
@@ -187,7 +206,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_body.obj" scale="1 1 1"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_body.obj" scale="2 2 2"/>
       </geometry>
       <material name="red">
         <color rgba="0.749 0.380 0.410 1.0"/>

@@ -9,14 +9,6 @@
     <color rgba="${255/255} ${100/255} ${0/255} 1.0"/>
   </material>
 
- <material name="Brown">
-    <color rgba="${198/255} ${94/255} ${42/255} 1.0"/>
-  </material>
-
- <material name="DarkBrown">
-    <color rgba="${144/255} ${68/255} ${30/255} 1.0"/>
-  </material>
-
  <!--https://www.textures.com/browse/cliffs/2060 -->
 
 
@@ -40,7 +32,7 @@
 			<geometry>
 				<box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
 			</geometry>
-			<material name="Brown"/><!--rviz"/-->
+			<material name="Black"/><!--rviz"/-->
 			
 		</visual>
 	        <collision name="box">
@@ -99,7 +91,7 @@
 		        <geometry>
                           <mesh filename="package://climbingrobot_description/meshes/cone.stl" scale="1 1 1"/>
                         </geometry>
-			<material name="DarkBrown"/><!--rviz"/-->
+			<material name="Red"/><!--rviz"/-->
 			
 		</visual>
 	        <collision>
@@ -112,6 +104,44 @@
 	       </collision>
 
 	</link>
+
+<!--
+	<gazebo reference="pillar2">
+   	 <material>Gazebo/RockWall</material>
+  	</gazebo> -->
+<!--
+	  <joint name="base_pillar2" type="fixed">
+	    <parent link="wall"/>
+	    <child link="pillar2"/>
+	    <origin rpy="0 0 0" xyz="0 0.0 0"/>
+	  </joint>-->
+<!--
+		<link name="pillar2">
+		<inertial>
+ 	        <mass value="10"/>
+ 	        <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+  	        </inertial>
+
+		<visual > 
+			<!-- dont put name otherwise gazebo discards color-->
+<!-- 			<origin xyz="0  $(arg pillar2_posY) $(arg pillar2_posZ)"/>
+		        <geometry>
+                          <mesh filename="package://climbingrobot_description/meshes/cone.stl" scale="1 1 1"/>
+                        </geometry>
+			<material name="Red"/><!--rviz"/-->
+<!--			
+		</visual>
+	        <collision>
+		       <origin xyz="0   $(arg pillar2_posY)  $(arg pillar2_posZ)"/>
+		  	 <origin xyz="0 0 0"/>
+		        <geometry>
+                          <mesh filename="package://climbingrobot_description/meshes/cone.stl" scale="1 1 1"/>
+                        </geometry>
+
+<!--	       </collision>
+
+	</link>-->
+
 
 
 	</xacro:if>
