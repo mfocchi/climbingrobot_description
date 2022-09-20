@@ -3,7 +3,7 @@
 	<arg name="task_period" default="0.004"/>
 	<arg name="spawn_z" default="20.0" />
         <!-- send hyq urdf to param server -->
-        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/climbingrobot.xacro' task_period:=$(arg task_period)"/>
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/climbingrobot.xacro' task_period:=$(arg 		task_period) anchorZ:=$(arg spawn_z)"/>
 
 
         <!-- send hyq semantic description srdf to param server -->
