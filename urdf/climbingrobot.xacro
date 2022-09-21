@@ -227,7 +227,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_body.obj" scale="2 2 2"/>
+        <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_body.obj" scale="1 1 1"/>
       </geometry>
       <material name="red">
         <color rgba="0.749 0.380 0.410 1.0"/>
