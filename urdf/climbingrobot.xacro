@@ -5,7 +5,7 @@
     <!--- new_gazebo_version should be false by default because pinocchio needs it!-->
     <xacro:arg name="robot_name" default="climbingrobot"/> 
     <xacro:arg name="new_gazebo_version" default="false"/>	
-    <xacro:arg name="anchorZ" default="1."/>	
+    <xacro:arg name="anchorZ" default="20."/>	
 
 
     <xacro:include filename="$(find climbingrobot_description)/gazebo/gazebo.urdf.xacro">
@@ -135,6 +135,27 @@
   </joint>
 
   <link name="pre-base1"> 
+      <visual>
+      <origin rpy="0 0 0" xyz="0 0 ${$(arg anchorZ)/2}"/>
+      <geometry>
+        <cylinder radius="0.05" length="$(arg anchorZ)"/>
+      </geometry>
+      <material name="grey">
+        <color rgba=".7 .7 .7 .5"/>
+      </material>
+    </visual> 
+
+   <collision>
+      <origin rpy="0 0 0" xyz="0 0 ${$(arg anchorZ)/2}"/>
+      <geometry>
+        <cylinder radius="0.05" length="$(arg anchorZ)"/>
+      </geometry>
+      <material name="grey">
+        <color rgba=".7 .7 .7 .5"/>
+      </material>
+    </collision> 
+
+
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
