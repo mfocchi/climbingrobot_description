@@ -15,6 +15,7 @@ Panels:
         - /TF1/Tree1
         - /PointCloud21
         - /Image1
+        - /RobotModel2
       Splitter Ratio: 0.6178160905838013
     Tree Height: 842
   - Class: rviz/Selection
@@ -62,7 +63,7 @@ Visualization Manager:
       Plane Cell Count: 10000
       Reference Frame: world
       Value: true
-    - Alpha: 1
+    - Alpha: 0.5
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -72,6 +73,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        pillar:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         wall:
           Alpha: 1
           Show Axes: false
@@ -100,10 +106,52 @@ Visualization Manager:
       Queue Size: 100
       Value: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: false
+        All Enabled: true
+        anchor:
+          Value: true
+        anchor_2:
+          Value: true
+        base_link:
+          Value: true
+        foot:
+          Value: true
+        lower_link:
+          Value: true
+        pillar:
+          Value: true
+        pillar2:
+          Value: true
+        pre-base1:
+          Value: true
+        pre-base1_2:
+          Value: true
+        pre-base2:
+          Value: true
+        pre-base2_2:
+          Value: true
+        pre-base3:
+          Value: true
+        pre-base3_2:
+          Value: true
+        pre_wire1:
+          Value: true
+        pre_wire1_2:
+          Value: true
+        upper_link1:
+          Value: true
+        upper_link2:
+          Value: true
+        wall:
+          Value: true
+        wire:
+          Value: true
+        wire_2:
+          Value: true
+        world:
+          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -111,9 +159,34 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        world:
+          anchor:
+            pre_wire1:
+              wire:
+                pre-base1:
+                  pre-base2:
+                    pre-base3:
+                      base_link:
+                        pre-base3_2:
+                          pre-base2_2:
+                            pre-base1_2:
+                              wire_2:
+                                pre_wire1_2:
+                                  anchor_2:
+                                    {}
+                        upper_link1:
+                          upper_link2:
+                            lower_link:
+                              foot:
+                                {}
+          pillar:
+            {}
+          pillar2:
+            {}
+          wall:
+            {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -154,7 +227,7 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: false
-    - Alpha: 1
+    - Alpha: 0.4000000059604645
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -165,6 +238,11 @@ Visualization Manager:
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
         anchor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        anchor_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -188,7 +266,15 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        pre-base1_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         pre-base2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        pre-base2_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -196,7 +282,16 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        pre-base3_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         pre_wire1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        pre_wire1_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -211,6 +306,10 @@ Visualization Manager:
           Show Trail: false
           Value: true
         wire:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wire_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -252,7 +351,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 16.06272315979004
+      Distance: 23.943981170654297
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -260,17 +359,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.15642784535884857
-        Y: -1.8166013956069946
-        Z: -1.5895161628723145
+        X: -0.9599071741104126
+        Y: 2.696993589401245
+        Z: -0.9259324073791504
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4897955060005188
+      Pitch: 1.5397963523864746
       Target Frame: base_link
-      Yaw: 5.779263019561768
+      Yaw: 5.679243087768555
     Saved:
       - Class: rviz/ThirdPersonFollower
         Distance: 2.606315851211548
@@ -311,4 +410,4 @@ Window Geometry:
     collapsed: true
   Width: 1615
   X: 65
-  Y: 24
+  Y: 140
