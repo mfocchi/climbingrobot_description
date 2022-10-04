@@ -148,13 +148,34 @@
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 
+
+
   <link name="pre-base1"> 
+      <visual>
+      <origin rpy="0 0 0" xyz="0 0 ${$(arg anchorZ)/2}"/>
+     <geometry>
+           <cylinder radius="0.05" length="$(arg anchorZ)"/>
+      </geometry>
+ 	      <material name="grey">
+ 	        <color rgba=".7 .7 .7 .5"/>
+ 	      </material>
+     </visual>  	
+     <collision>
+ 	      <origin rpy="0 0 0" xyz="0 0 $(arg anchorZ)"/>
+ 	      <geometry>
+ 	        <cylinder radius="0.05" length="${$(arg anchorZ)*2}"/>
+ 	      </geometry>
+ 	      <material name="grey">
+ 	        <color rgba=".7 .7 .7 .5"/>
+ 	      </material>
+    </collision> 
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
+
   <!-- Revolute pitch joint between the wire and the base -->
   <joint name="wire_base_pitch" type="revolute">
     <parent link="pre-base1"/>
@@ -207,7 +228,7 @@
 
  
 
-  <!-- Anchor 2 closed loop kinematics Gazebo -->
+  <!-- Anchor 2   -->
 
 
    <joint name="anchor2_position" type="fixed">
@@ -303,13 +324,34 @@
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 
+
+
   <link name="pre-base1_2"> 
+      <visual>
+       	      <origin rpy="0 0 0" xyz="0 0 $(arg anchorZ)"/>
+ 	      <geometry>
+ 	        <cylinder radius="0.05" length="${$(arg anchorZ)*2}"/>
+ 	      </geometry>
+ 	      <material name="grey">
+ 	        <color rgba=".7 .7 .7 .5"/>
+ 	      </material>
+     </visual>  	
+     <collision>
+ 	      <origin rpy="0 0 0" xyz="0 0 ${$(arg anchorZ)/2}"/>
+ 	      <geometry>
+ 	        <cylinder radius="0.05" length="$(arg anchorZ)"/>
+ 	      </geometry>
+ 	      <material name="grey">
+ 	        <color rgba=".7 .7 .7 .5"/>
+ 	      </material>
+    </collision> 
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
+
   <!-- Revolute pitch joint between the wire and the base -->
   <joint name="wire_base_pitch_2" type="revolute">
     <parent link="pre-base1_2"/>
@@ -363,23 +405,21 @@
   <link name="fake_connection">   
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
-      <mass value="0.001"/>
-      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
     </inertial>
   </link>
 
-  <xacro:if value="$(arg new_gazebo_version)">  
-
-
-	<gazebo>
-	    <joint name="connection_to_base_link" type="fixed">
-	      <pose>0 0 0 0 0 0 0</pose>
-	      <parent>fake_connection</parent>
-	      <child>base_link</child>
-	    </joint>
-	</gazebo>
-
- </xacro:if>
+ <!-- closing the loop for gazebo not used by pinocchio -->
+ <gazebo>  
+  <joint name="fixed_joint" type="fixed">
+         <pose>0 0 0 0 0 0 0</pose>
+       <parent>fake_connection</parent>
+	 <child>base_link</child>
+ 	<axis>
+    </axis>
+  </joint>  
+ </gazebo>
  
 
   <link name="base_link">
