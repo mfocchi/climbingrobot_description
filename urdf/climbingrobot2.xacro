@@ -143,7 +143,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint translates on z axis -->
     <axis xyz="0 0 -1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 -${$(arg anchor2Y)/2}"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 ${0.05 -$(arg anchor2Y)/2}"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -221,7 +221,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint rotates about z axis -->
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.05 0.0"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -319,7 +319,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint translates on x axis -->
     <axis xyz="0 0 -1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 -${$(arg anchor2Y)/2}"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0  ${0.05 -$(arg anchor2Y)/2}"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -415,7 +415,7 @@
  <!-- closing the loop for gazebo not used by pinocchio -->
  <gazebo>  
 	  <joint name="fixed_joint" type="fixed">
-		 <pose>0 0 0 0 0 0 0</pose>
+		 <pose>0 0.05 0 0 0 0 0</pose>
 		 <parent>fake_link</parent>
 		 <child>base_link</child>		
 	  </joint>  
