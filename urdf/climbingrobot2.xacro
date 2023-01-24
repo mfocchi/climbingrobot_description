@@ -8,11 +8,11 @@
 
    <xacro:arg name="anchorX" default="0."/>	
    <xacro:arg name="anchorY" default="0."/>	
-   <xacro:arg name="anchorZ" default="1."/>	
+   <xacro:arg name="anchorZ" default="20."/>	
 
    <xacro:arg name="anchor2X" default="0."/>	
    <xacro:arg name="anchor2Y" default="0."/>	
-   <xacro:arg name="anchor2Z" default="1."/>	
+   <xacro:arg name="anchor2Z" default="20."/>	
 
 
 
@@ -29,7 +29,7 @@
   </material>
 
 
-<!--
+<!--this is just to plot the target in gazebo as a ball
 
     <joint name="target_link" type="fixed">
         <origin rpy="0 0 0" xyz=" 3.   3. 0."/>
@@ -53,7 +53,7 @@
     <link name="world"/>
 
 
- <!-- Anchor 1-->
+ <!-- Anchor 1 link-->
 
    <joint name="anchor1_position" type="fixed">
         <origin rpy="0 0 0" xyz="$(arg anchorX) $(arg anchorY) $(arg anchorZ)"/>
@@ -77,7 +77,7 @@
 
 
 
-  <!-- Revolute pitch joint between the mountain and the wire -->
+  <!-- Revolute pitch joint between the anchor1 and the wire -->
   <joint name="mountain_wire_pitch" type="revolute">
     <parent link="anchor"/>
     <child link="pre_wire1"/>
@@ -141,7 +141,7 @@
     <parent link="wire"/>
     <child link="pre-base1"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
-    <!-- joint translates on x axis -->
+    <!-- joint translates on z axis -->
     <axis xyz="0 0 -1"/>
     <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
     <!-- pybullet simulation parameters -->
@@ -160,7 +160,7 @@
  	        <color rgba=".7 .7 .7 .5"/>
  	      </material>
      </visual>  	
-     <collision>
+     <!--collision>
  	      <origin rpy="0 0 0" xyz="0 0 $(arg anchorZ)"/>
  	      <geometry>
  	        <cylinder radius="0.05" length="${$(arg anchorZ)*2}"/>
@@ -168,7 +168,7 @@
  	      <material name="grey">
  	        <color rgba=".7 .7 .7 .5"/>
  	      </material>
-    </collision> 
+    </collision--> 
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
@@ -232,7 +232,7 @@
 
 
    <joint name="anchor2_position" type="fixed">
-        <origin rpy="0 0 0" xyz="$(arg anchor2X) $(arg anchor2Y) 0"/>
+        <origin rpy="0 0 0" xyz="0 $(arg anchor2Y) 0"/>
         <parent link="anchor"/>
         <child link="anchor_2"/>
     </joint>
@@ -262,7 +262,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint rotates about -y axis -->
     <axis xyz="0 -1 0"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <origin rpy="-${pi/2}  0 0" xyz="0.0 0.0 0.0"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -319,7 +319,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint translates on x axis -->
     <axis xyz="0 0 -1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 -$(arg anchor2Y)"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -336,7 +336,7 @@
  	        <color rgba=".7 .7 .7 .5"/>
  	      </material>
      </visual>  	
-     <collision>
+     <!--collision>
  	      <origin rpy="0 0 0" xyz="0 0 ${$(arg anchorZ)/2}"/>
  	      <geometry>
  	        <cylinder radius="0.05" length="$(arg anchorZ)"/>
@@ -344,7 +344,7 @@
  	      <material name="grey">
  	        <color rgba=".7 .7 .7 .5"/>
  	      </material>
-    </collision> 
+    </collision--> 
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <mass value="0.01"/>
@@ -391,35 +391,36 @@
     </inertial>
   </link>
 
-<gazebo> 
-  <!-- Revolute yaw joint between the wire and the base -->
-  <joint name="wire_base_yaw_2" type="revolute">
-     <pose>0 0 0 0 0 0 0</pose> 
-     <parent>pre-base3_2</parent>
-     <child>base_link</child>
-     <axis>
-	<xyz>0 0 1</xyz>
-     </axis>
-     <use_parent_model_frame>true</use_parent_model_frame>
-  </joint>
- </gazebo>
-	  <!--link name="fake_connection">   
-	    <inertial>
-	      <origin rpy="0 0 0" xyz="0 0 0.0"/>
-	      <mass value="0.01"/>
-	      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
-	    </inertial>
-	  </link-->
 
-		 <!-- closing the loop for gazebo not used by pinocchio -->
-		 <!--gazebo>  
-		  <joint name="fixed_joint" type="fixed">
-			 <pose>0 0 0 0 0 0 0</pose>
-			 <parent>fake_connection</parent>
-			 <child>base_link</child>
-		  </joint>  
-		 </gazebo-->
- 
+  <joint name="wire_base_yaw_2" type="revolute">
+    <parent link="pre-base3_2"/>
+    <child link="fake_link"/>
+    <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
+    <!-- joint rotates about x axis -->
+    <axis xyz="0 0 1"/>
+    <origin rpy="1.57 0 0" xyz="0.0 0.0 0.0"/>
+    <!-- pybullet simulation parameters -->
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="fake_link">   
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+
+ <!-- closing the loop for gazebo not used by pinocchio -->
+ <gazebo>  
+	  <joint name="fixed_joint" type="fixed">
+		 <pose>0 0 0 0 0 0 0</pose>
+		 <parent>fake_link</parent>
+		 <child>base_link</child>		
+	  </joint>  
+ </gazebo>
+
 
   <link name="base_link">
     <!-- BASE LINK INERTIAL -->
