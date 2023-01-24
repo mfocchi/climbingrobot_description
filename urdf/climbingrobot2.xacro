@@ -11,7 +11,7 @@
    <xacro:arg name="anchorZ" default="20."/>	
 
    <xacro:arg name="anchor2X" default="0."/>	
-   <xacro:arg name="anchor2Y" default="0."/>	
+   <xacro:arg name="anchor2Y" default="5."/>	
    <xacro:arg name="anchor2Z" default="20."/>	
 
 
@@ -120,7 +120,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint rotates about x axis -->
     <axis xyz="1 0 0"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <origin rpy="1.57 0 0" xyz="0.0 0.0 0.0"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -143,7 +143,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint translates on z axis -->
     <axis xyz="0 0 -1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 -${$(arg anchor2Y)/2}"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -319,7 +319,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint translates on x axis -->
     <axis xyz="0 0 -1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 -$(arg anchor2Y)"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 -${$(arg anchor2Y)/2}"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
