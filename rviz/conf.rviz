@@ -8,7 +8,6 @@ Panels:
         - /Status1
         - /Grid1
         - /RobotModel1
-        - /TF1
         - /TF1/Frames1
         - /TF1/Tree1
       Splitter Ratio: 0.6178160905838013
@@ -73,20 +72,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        anchor_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        fake_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         foot:
           Alpha: 1
           Show Axes: false
@@ -102,16 +92,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        pre-base1_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         pre-base2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        pre-base2_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -119,16 +100,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        pre-base3_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         pre_wire1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        pre_wire1_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -143,10 +115,6 @@ Visualization Manager:
           Show Trail: false
           Value: true
         wire:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wire_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -188,10 +156,18 @@ Visualization Manager:
       Visual Enabled: true
     - Class: rviz/MarkerArray
       Enabled: true
+      Marker Topic: /arrow
+      Name: MarkerArray
+      Namespaces:
+        "": true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
       Marker Topic: /vis
       Name: MarkerArray
       Namespaces:
-        {}
+        "": true
       Queue Size: 100
       Value: true
     - Class: rviz/TF
@@ -201,11 +177,7 @@ Visualization Manager:
         All Enabled: false
         anchor:
           Value: true
-        anchor_2:
-          Value: false
         base_link:
-          Value: false
-        fake_link:
           Value: false
         foot:
           Value: false
@@ -217,19 +189,11 @@ Visualization Manager:
           Value: false
         pre-base1:
           Value: false
-        pre-base1_2:
-          Value: false
         pre-base2:
-          Value: false
-        pre-base2_2:
           Value: false
         pre-base3:
           Value: false
-        pre-base3_2:
-          Value: false
         pre_wire1:
-          Value: false
-        pre_wire1_2:
           Value: false
         upper_link1:
           Value: false
@@ -238,8 +202,6 @@ Visualization Manager:
         wall:
           Value: false
         wire:
-          Value: false
-        wire_2:
           Value: false
         world:
           Value: false
@@ -252,14 +214,6 @@ Visualization Manager:
       Tree:
         world:
           anchor:
-            anchor_2:
-              pre_wire1_2:
-                wire_2:
-                  pre-base1_2:
-                    pre-base2_2:
-                      pre-base3_2:
-                        fake_link:
-                          {}
             pre_wire1:
               wire:
                 pre-base1:
@@ -307,7 +261,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 27.699970245361328
+      Distance: 21.450855255126953
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -323,9 +277,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.10979735851287842
+      Pitch: 0.7847968339920044
       Target Frame: base_link
-      Yaw: 5.9324164390563965
+      Yaw: 0.20924228429794312
     Saved:
       - Class: rviz/ThirdPersonFollower
         Distance: 2.606315851211548
