@@ -78,7 +78,7 @@
 
 
   <!-- Revolute pitch joint between the anchor1 and the wire -->
-  <joint name="mountain_wire_pitch" type="revolute">
+  <joint name="mountain_wire_pitch_l" type="revolute">
     <parent link="anchor"/>
     <child link="pre_wire1"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -114,7 +114,7 @@
   </link>
 
   <!-- Revolute roll joint between the mountain and the wire -->
-  <joint name="mountain_wire_roll" type="revolute">
+  <joint name="mountain_wire_roll_l" type="revolute">
     <parent link="pre_wire1"/>
     <child link="wire"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -137,7 +137,7 @@
   </link>
 
   <!-- Prismatic joint between the wire and the base -->
-  <joint name="wire_base_prismatic" type="prismatic">
+  <joint name="wire_base_prismatic_l" type="prismatic">
     <parent link="wire"/>
     <child link="pre-base1"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -177,7 +177,7 @@
   </link>
 
   <!-- Revolute pitch joint between the wire and the base -->
-  <joint name="wire_base_pitch" type="revolute">
+  <joint name="wire_base_pitch_l" type="revolute">
     <parent link="pre-base1"/>
     <child link="pre-base2"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -196,7 +196,7 @@
     </inertial>
   </link>
   <!-- Revolute roll joint between the wire and the base -->
-  <joint name="wire_base_roll" type="revolute">
+  <joint name="wire_base_roll_l" type="revolute">
     <parent link="pre-base2"/>
     <child link="pre-base3"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -215,7 +215,7 @@
     </inertial>
   </link>
   <!-- Revolute yaw joint between the wire and the base -->
-  <joint name="wire_base_yaw" type="revolute">
+  <joint name="wire_base_yaw_l" type="revolute">
     <parent link="pre-base3"/>
     <child link="base_link"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -256,7 +256,7 @@
 
 
   <!-- Revolute pitch joint between the mountain and the wire -->
-  <joint name="mountain_wire_pitch_2" type="revolute">
+  <joint name="mountain_wire_pitch_r" type="revolute">
     <parent link="anchor_2"/>
     <child link="pre_wire1_2"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -292,7 +292,7 @@
   </link>
 
   <!-- Revolute roll joint between the mountain and the wire -->
-  <joint name="mountain_wire_roll_2" type="revolute">
+  <joint name="mountain_wire_roll_r" type="revolute">
     <parent link="pre_wire1_2"/>
     <child link="wire_2"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -313,7 +313,7 @@
   </link>
 
   <!-- Prismatic joint between the wire and the base -->
-  <joint name="wire_base_prismatic_2" type="prismatic">
+  <joint name="wire_base_prismatic_r" type="prismatic">
     <parent link="wire_2"/>
     <child link="pre-base1_2"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -353,7 +353,7 @@
   </link>
 
   <!-- Revolute pitch joint between the wire and the base -->
-  <joint name="wire_base_pitch_2" type="revolute">
+  <joint name="wire_base_pitch_r" type="revolute">
     <parent link="pre-base1_2"/>
     <child link="pre-base2_2"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -372,7 +372,7 @@
     </inertial>
   </link>
   <!-- Revolute roll joint between the wire and the base -->
-  <joint name="wire_base_roll_2" type="revolute">
+  <joint name="wire_base_roll_r" type="revolute">
     <parent link="pre-base2_2"/>
     <child link="pre-base3_2"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
@@ -392,7 +392,7 @@
   </link>
 
 
-  <joint name="wire_base_yaw_2" type="revolute">
+  <joint name="wire_base_yaw_r" type="revolute">
     <parent link="pre-base3_2"/>
     <child link="fake_link"/>
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
