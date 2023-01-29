@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="climbingrobot2">
+    
+    <group name="base">
+        <link name="world"/>
+    </group>
+
+    <group name="rope1">
+        <chain base_link="world" tip_link="base_link"/>
+    </group>
+    
+    <group name="rope2">
+        <chain base_link="world" tip_link="fake_link"/>
+    </group>
+    
+    <group name="leg">
+        <chain base_link="base_link" tip_link="foot"/>
+    </group>
+
+    <group name="chains"> 
+        <group name="rope1"/>
+        <group name="rope2"/>
+        <group name="leg"/>
+    </group>
+
+
+<group_state name="home" group="chains">
+
+        <joint name="mountain_wire_pitch_l" value="0.0"/>
+        <joint name="mountain_wire_roll_l" value="0.0"/>
+        <joint name="wire_base_prismatic_l" value="0.0"/>
+        <joint name="wire_base_pitch_l" value="0.0"/>
+        <joint name="wire_base_roll_l" value="0.0"/>
+
+        <joint name="wire_base_yaw_l" value="0.0"/>
+        <joint name="mountain_wire_pitch_r" value="0.0"/>
+        <joint name="mountain_wire_roll_r" value="0.0"/>
+        <joint name="wire_base_prismatic_r" value="0.0"/>
+        <joint name="wire_base_pitch_r" value="0.0"/>
+        
+        <joint name="wire_base_roll_r" value="0.0"/>
+        <joint name="wire_base_yaw_r" value="0.0"/>
+        <joint name="mountain_wire_roll_r" value="0.0"/>
+        <joint name="wire_base_prismatic_r" value="0.0"/>
+        <joint name="wire_base_pitch_r" value="0.0"/>
+        
+        <joint name="hip_pitch" value="0.0"/>
+        <joint name="hip_roll" value="0.0"/>
+        <joint name="knee" value="0.0"/>
+
+</group_state>
+
+</robot>

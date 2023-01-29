@@ -1,0 +1,30 @@
+solver_options:
+    regularization: 1e-4
+    back_end: "qpoases"
+
+stack:
+    - ["Base"]
+    - ["Posture"]
+    
+constraints: ["VelocityLimits", "ClosedLinkage"]
+    
+
+Posture:
+    type: "Postural"
+    lambda: 0.1
+    
+ClosedLinkage:
+    type: "Cartesian"
+    distal_link: "closed_link"
+    base_link: "base_link"
+    lambda: 0.1
+    indices: [0,1,2,4]
+    
+Base:
+    type: "Cartesian"
+    distal_link: "base_link"
+    base_link: "world"
+    lambda: 0.1
+    
+VelocityLimits:
+    type: "VelocityLimits"
