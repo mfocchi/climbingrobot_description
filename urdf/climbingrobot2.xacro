@@ -232,7 +232,7 @@
 
 
    <joint name="anchor2_position" type="fixed">
-        <origin rpy="0 0 0" xyz="0 $(arg anchor2Y) 0"/>
+        <origin rpy="0 0 0" xyz="0 $(arg anchor2Y) 20."/>
         <parent link="anchor"/>
         <child link="anchor_2"/>
     </joint>
@@ -262,7 +262,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint rotates about -y axis -->
     <axis xyz="0 -1 0"/>
-    <origin rpy="-${pi/2}  0 0" xyz="0.0 0.0 0.0"/>
+    <origin rpy="-${pi/2}  0 0" xyz="0.0 $(arg anchor2Y) 20.0"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -420,6 +420,13 @@
 		 <child>base_link</child>		
 	  </joint>  
  </gazebo>
+ 
+ <link name="closed_link"/>
+ <joint name="fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.05 0.0"/>
+    <parent link="fake_link"/>
+    <child link="closed_link"/>
+  </joint>
 
 
   <link name="base_link">
