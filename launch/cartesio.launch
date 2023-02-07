@@ -1,0 +1,49 @@
+<launch>
+       <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/climbingrobot2.xacro' task_period:=0.004"/>
+
+    <param name="robot_description_semantic" command="$(find xacro)/xacro '$(find climbingrobot_description)/cartesio/cartesio.srdf.xacro'" /> 
+    
+    <!--  load climb wall into param server-->	
+	<param name="climb_wall" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/climb_wall.xacro'  anchorZ:=20."/>
+    
+    
+    <param name="cartesian/problem_description" textfile="$(find climbingrobot_description)/cartesio/climbing.stack"/>
+    <node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args="0.1 0 0 0 0 0   wall ci/world  200"/>
+    <node pkg="tf" type="static_transform_publisher" name="pillar_broadcaster" args="0 0 0 0 0 0   pillar wall  200"/>
+    
+    <arg name="solver" default="OpenSot"/>
+    <arg name="prefix" default=""/>
+    <arg name="use_xbot_config" default="false"/>
+    <arg name="verbosity" default="2"/>
+    <arg name="rate" default="500.0"/>
+    <arg name="tf_prefix" default="ci"/>
+    <arg name="markers" default="true"/>
+    <arg name="namespace" default=""/> <!-- dummy argument avoids pass_all_args error in parent launch file -->
+    <arg name="robot" default=""/>
+    <arg name="is_model_floating_base" default="false"/>
+       
+    
+    <node pkg="cartesian_interface" type="ros_server_node" 
+                                    name="ros_server_node" 
+                                    required="true" 
+                                    output="screen" 
+                                    launch-prefix="$(arg prefix)">
+                                    
+        <param name="is_model_floating_base" value="$(arg is_model_floating_base)"/>
+        <param name="model_type" value="RBDL"/>
+        <param name="solver" value="$(arg solver)"/>
+        <param name="use_xbot_config" value="$(arg use_xbot_config)"/>
+        <param name="verbosity" value="$(arg verbosity)"/>
+        <param name="rate" value="$(arg rate)"/>
+        <param name="tf_prefix" value="$(arg tf_prefix)"/>
+        
+    </node>
+
+    <node if="$(arg markers)" pkg="cartesian_interface" type="marker_spawner" name="interactive_markers" output="screen">
+        <param name="tf_prefix" value="$(arg tf_prefix)"/>
+    </node>
+
+    
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find climbingrobot_description)/cartesio/rviz.rviz" />
+
+</launch>

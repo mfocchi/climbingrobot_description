@@ -55,6 +55,9 @@ install(DIRECTORY rviz/
   PATTERN ".svn" EXCLUDE)
 
 
+install(DIRECTORY cartesio/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/cartesio
+  PATTERN ".svn" EXCLUDE)
 
 
 catkin_install_python(PROGRAMS scripts/go0
