@@ -14,7 +14,8 @@
    <xacro:arg name="anchor2Y" default="5."/>	
    <xacro:arg name="anchor2Z" default="20."/>	
 
-
+   <xacro:arg name="hoist_distance" default="0.1"/>	
+   <xacro:arg name="hoist_base_distanceZ" default="0.05"/>
 
     <xacro:include filename="$(find climbingrobot_description)/gazebo/gazebo.urdf.xacro">
         <xacro:arg name="task_period" value="$(arg task_period)"/>
@@ -143,7 +144,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint translates on z axis -->
     <axis xyz="0 0 -1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 ${0.05 -$(arg anchor2Y)/2}"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 ${$(arg hoist_distance)/2 -$(arg anchor2Y)/2}"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -221,7 +222,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint rotates about z axis -->
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.05 0.0"/>
+    <origin rpy="0 0 0" xyz="0.0 ${$(arg hoist_distance)/2} -$(arg hoist_base_distanceZ)"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -319,7 +320,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joint translates on x axis -->
     <axis xyz="0 0 -1"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0  ${0.05 -$(arg anchor2Y)/2}"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0  ${$(arg hoist_distance)/2 -$(arg anchor2Y)/2}"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -415,7 +416,7 @@
  <!-- closing the loop for gazebo not used by pinocchio -->
  <gazebo>  
 	  <joint name="fixed_joint" type="fixed">
-		 <pose>0 0.05 0 0 0 0 0</pose>
+		 <pose>0 ${$(arg hoist_distance)/2} $(arg hoist_base_distanceZ) 0 0 0 0</pose>
 		 <parent>fake_link</parent>
 		 <child>base_link</child>		
 	  </joint>  
