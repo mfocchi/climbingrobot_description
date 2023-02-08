@@ -16,7 +16,7 @@
 
    <xacro:arg name="hoist_distance" default="0.1"/>	
    <xacro:arg name="hoist_base_distanceZ" default="0.05"/>
-   <xacro:arg name="lowerleg_landing_length" default="0.1"/>
+   <xacro:arg name="lowerleg_landing_length" default="0.4"/>
 
 
 
@@ -429,9 +429,9 @@
   <link name="base_link">
     <!-- BASE LINK INERTIAL -->
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.05"/>
       <!-- <mass value="0.36"/> -->
-      <mass value="3.47"/>
+      <mass value="13.47"/>
       <!-- The base is extremely symmetrical. -->
       <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
     </inertial>
