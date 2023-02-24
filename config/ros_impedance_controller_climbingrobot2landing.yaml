@@ -17,8 +17,9 @@
     - hip_roll 
     - knee 
     - hip_yaw_landing_l
+    - wheel_joint_l
     - hip_yaw_landing_r
-
+    - wheel_joint_r
   gains:
       mountain_wire_pitch_r: {p: 0.0, i: 0.0, d: 0}
       mountain_wire_roll_r: {p: 0.0, i: 0.0, d: 0}
@@ -36,8 +37,9 @@
       hip_roll: {p: 0.0, i: 0.0, d: 0}
       knee: {p: 0.0, i: 0.0, d: 0}
       hip_yaw_landing_l: {p: 0.0, i: 0.0, d: 0}
+      wheel_joint_l: {p: 0.0, i: 0.0, d: 0}
       hip_yaw_landing_r: {p: 0.0, i: 0.0, d: 0}
-
+      wheel_joint_r: {p: 0.0, i: 0.0, d: 0}
 
   home:
       mountain_wire_pitch_r: 0.0
@@ -56,4 +58,6 @@
       hip_roll: 0
       knee: 0
       hip_yaw_landing_l: 0
+      wheel_joint_l: 0
       hip_yaw_landing_r: 0
+      wheel_joint_r: 0

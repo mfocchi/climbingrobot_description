@@ -16,9 +16,9 @@
 
    <xacro:arg name="hoist_distance" default="0.1"/>	
    <xacro:arg name="hoist_base_distanceZ" default="0.05"/>
-   <xacro:arg name="lowerleg_landing_length" default="0.4"/>
+   <xacro:arg name="lowerleg_landing_length" default="0.3"/>
 
-
+    <xacro:property name="WHEEL_pos" value="0.10183" />
 
     <xacro:include filename="$(find climbingrobot_description)/gazebo/gazebo.urdf.xacro">
         <xacro:arg name="task_period" value="$(arg task_period)"/>
@@ -469,7 +469,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joints rotates around the z-axis -->
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 1.57" xyz="0.0 -0.08 -0.05"/>
+    <origin rpy="0 0 1.57" xyz="0.0 -0.08 0.025"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -532,7 +532,7 @@
     </collision>
    </link>
 
- <gazebo reference="foot_landing_l">
+ <gazebo reference="wheel_l">
         <kp>1000000.0</kp>
         <kd>100.0</kd>
         <mu1>1.8</mu1>
@@ -543,14 +543,14 @@
                 <always_on>true</always_on>
                 <update_rate>1000.0</update_rate>
                 <contact>
-                <collision>lowerleg_landing_l_fixed_joint_lump__foot_landing_l_collision</collision>
+                <collision>wheel_l_collision</collision>
                 </contact>
                 <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
                 because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
                 <plugin name="foot_bumper" filename="libgazebo_ros_bumper.so">
                         <bumperTopicName>/$(arg robot_name)/foot_landing_l_bumper</bumperTopicName>
                         <!--robotNamespace>solo</robotNamespace-->
-                        <frameName>foot_landing_l</frameName>
+                        <frameName>wheel_l</frameName>
                 </plugin>
         </sensor>
         <material>Gazebo/Black</material>
@@ -564,7 +564,7 @@
     <limit effort="1000" velocity="100.0" lower="-100" upper="100"/>
     <!-- joints rotates around the z-axis -->
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 -1.57" xyz="0.0 0.08 -0.05"/>
+    <origin rpy="0 0 -1.57" xyz="0.0 0.08 0.025"/>
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -628,7 +628,7 @@
    </link>
 
 
-    <gazebo reference="foot_landing_r">
+    <gazebo reference="wheel_r">
         <kp>1000000.0</kp>
         <kd>100.0</kd>
         <mu1>1.8</mu1>
@@ -639,20 +639,97 @@
                 <always_on>true</always_on>
                 <update_rate>1000.0</update_rate>
                 <contact>
-                <collision>lowerleg_landing_r_fixed_joint_lump__foot_landing_r_collision</collision>
+                <collision>wheel_r_collision</collision>
                 </contact>
                 <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
                 because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
                 <plugin name="foot_bumper" filename="libgazebo_ros_bumper.so">
                         <bumperTopicName>/$(arg robot_name)/foot_landing_r_bumper</bumperTopicName>
                         <!--robotNamespace>solo</robotNamespace-->
-                        <frameName>foot_landing_r</frameName>
+                        <frameName>wheel_r</frameName>
                 </plugin>
         </sensor>
         <material>Gazebo/Black</material>
    </gazebo>
   
 
+
+    <!--WHEEL JOINTS-->
+
+        <joint name="wheel_joint_l" type="revolute">
+            <parent link="foot_landing_l"/>
+            <child link="wheel_l"/>
+            <axis xyz="1 0 0"/>
+            <origin xyz="-${WHEEL_pos} 0  0" rpy="0 -1.57 0" />         
+            <limit effort="100" lower="-1e10" upper="1e10" velocity="100"/>
+            <dynamics damping="0.0" friction="0.0"/>
+        </joint>
+
+        <!-- WHEEL ASSEMBLY -->
+        <link name="wheel_l">
+            <!--VISUAL-->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                       <mesh filename="package://climbingrobot_description/meshes/wheel_y.stl"/>
+                </geometry>
+                       <material name="blue">
+       			 <color rgba="0 0 1  1.0"/>
+      		</material>
+            </visual>
+
+            <!--COLLISION-->
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                       <mesh filename="package://climbingrobot_description/meshes/wheel_y.stl"/>
+                </geometry>
+            </collision>
+
+               <inertial>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <mass value="0.00693606"/>
+                    <inertia ixx="0.00000057" ixy="0.0" ixz="0.0" iyy="0.00000084" iyz="0.0" izz="0.00000053"/>
+                </inertial>
+        </link>
+
+
+        <joint name="wheel_joint_r" type="revolute">
+            <parent link="foot_landing_r"/>
+            <child link="wheel_r"/>
+            <axis xyz="1 0 0"/>
+            <origin xyz="-${WHEEL_pos} 0  0" rpy="0 -1.57 0" />         
+            <limit effort="100" lower="-1e10" upper="1e10" velocity="100"/>
+            <dynamics damping="0.0" friction="0.0"/>
+        </joint>
+
+        <!-- WHEEL ASSEMBLY -->
+        <link name="wheel_r">
+            <!--VISUAL-->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                       <mesh filename="package://climbingrobot_description/meshes/wheel_y.stl"/>
+                </geometry>
+                  <material name="blue">
+       			 <color rgba="0 0 1  1.0"/>
+      		</material>
+            </visual>
+
+            <!--COLLISION-->
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                       <mesh filename="package://climbingrobot_description/meshes/wheel_y.stl"/>
+                </geometry>
+            </collision>
+
+               <inertial>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <mass value="0.00693606"/>
+                    <inertia ixx="0.00000057" ixy="0.0" ixz="0.0" iyy="0.00000084" iyz="0.0" izz="0.00000053"/>
+                </inertial>
+        </link>
 
 
   <!-- Joint between the base and the ${prefix} upper leg -->
