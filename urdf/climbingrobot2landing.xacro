@@ -804,8 +804,8 @@
         <color rgba="0.7 0.7 0.7 0.5"/>
       </material>
     </visual>
-    <!-- UPPER LEG LINK COLLISION -->
-    <collision>
+    <!-- UPPER LEG LINK COLLISION  Commented to allow complete retraction without creating forces-->
+    <!--collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_upper_leg_left_side.obj"/>
@@ -813,7 +813,7 @@
         <material name="white">
         	<color rgba="0.898 0.913 0.941 1.0"/>
     	</material>
-    </collision>
+    </collision-->
     <!-- Bullet specific paramters -->
     <contact>
       <lateral_friction value="1.0"/>
@@ -850,7 +850,7 @@
         	<color rgba="0.898 0.913 0.941 1.0"/>
     	</material>
     </visual>
-    <!-- LOWER LEG LINK COLLISION -->
+    <!-- LOWER LEG LINK COLLISION-->
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -877,6 +877,7 @@
     <!-- pybullet simulation parameters -->
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
+
   <link name="foot">
     <!-- FOOT INERTIAL -->
     <!-- This link is symmetrical left or right -->

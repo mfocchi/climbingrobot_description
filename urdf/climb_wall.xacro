@@ -23,6 +23,7 @@
 <xacro:arg name="obstacle" default="true"/>	
 
 <xacro:arg name="anchorZ" default="10."/>
+<xacro:arg name="wall_inclination" default="0.0"/>
 	
 <xacro:arg name="pillar_posY" default="1.5"/>
 <xacro:arg name="pillar_posZ" default="0"/>
@@ -36,7 +37,7 @@
   	     </inertial>
 
 		<visual > <!-- dont put name otherwise gazebo discards color-->
- 			<origin xyz="0 0 ${$(arg anchorZ)/2}"/>
+ 			<origin xyz="${$(arg anchorZ)/2 *sin($(arg wall_inclination))}  0 ${$(arg anchorZ)/2}" rpy="0  -$(arg wall_inclination) 0"/>
 			<geometry>
 				<box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
 			</geometry>
@@ -44,7 +45,7 @@
 			
 		</visual>
 	        <collision name="box">
-		       <origin xyz="0 0 ${$(arg anchorZ)/2}"/>
+		       <origin xyz="${$(arg anchorZ)/2 *sin($(arg wall_inclination))} 0 ${$(arg anchorZ)/2}" rpy="0  -$(arg wall_inclination) 0"/>
 		       <geometry>
  				<box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
 	        	</geometry>
