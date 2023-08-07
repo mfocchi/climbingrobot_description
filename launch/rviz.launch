@@ -2,7 +2,7 @@
 <launch>
 
 	<arg name="rviz_conf" default="$(find climbingrobot_description)/rviz/conf.rviz"/>
-	<arg name="robot_name" default="climbingrobot"/>
+	<arg name="robot_name" default="climbingrobot2"/>
 
 
 	<env name="GAZEBO_MODEL_PATH" value="$(find climbingrobot_description)"/>
