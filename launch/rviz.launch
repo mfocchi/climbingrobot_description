@@ -3,13 +3,14 @@
 
 	<arg name="rviz_conf" default="$(find climbingrobot_description)/rviz/conf.rviz"/>
 	<arg name="robot_name" default="climbingrobot2"/>
-
+	<arg name="obstacle" default="false"/>
 
 	<env name="GAZEBO_MODEL_PATH" value="$(find climbingrobot_description)"/>
 
 	<!-- send hyq urdf to param server and spawn it -->
 	<include file="$(find climbingrobot_description)/launch/upload.launch">	
 		<arg name="robot_name" value="$(arg robot_name)" />
+		<arg name="obstacle" value="$(arg obstacle)" />
 	</include>
 
 	<node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args="0.1 0 0 0 0 0   /wall /world  200"/>
