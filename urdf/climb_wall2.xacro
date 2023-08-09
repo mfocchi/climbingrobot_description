@@ -17,6 +17,10 @@
     <color rgba="${144/255} ${68/255} ${30/255} 1.0"/>
   </material>
 
+
+<material name="orange">
+  <color rgba="0.8 0.4 0.0 1.0"/>
+</material>
  <!--https://www.textures.com/browse/cliffs/2060 -->
 
 
@@ -27,7 +31,7 @@
 <xacro:arg name="wall_inclination" default="0.0"/>
 
 	
-<xacro:arg name="pillar_posX" default="0"/>
+<xacro:arg name="pillar_posX" default="-0.5"/>
 <xacro:arg name="pillar_posY" default="3"/>
 <xacro:arg name="pillar_posZ" default="-7.5"/>
 
@@ -83,9 +87,6 @@
 	<xacro:if value="$(arg obstacle)">
 	
 
-		<gazebo reference="pillar">
-	   	 <material>Gazebo/RockWall</material>
-	  	</gazebo>
 
 		  <joint name="base_pillar" type="fixed">
 		    <parent link="wall"/>
@@ -94,30 +95,29 @@
 		  </joint>
 
 
-			<link name="pillar">
-			<inertial>
-	 	        <mass value="10"/>
-	 	        <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
-	  	        </inertial>
+		<link name="pillar">
+		<inertial>
+ 	        <mass value="10"/>
+ 	        <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+  	        </inertial>
 
-			<visual > <!-- dont put name otherwise gazebo discards color-->
-	 			  <origin rpy="0 0 0" xyz="$(arg pillar_posX) $(arg pillar_posY)  ${$(arg anchorZ) + $(arg pillar_posZ)} "/>
-				<geometry>
-				
-		                  <mesh filename="package://climbingrobot_description/meshes/ellipsoid.stl" scale="1 1 1"/>
-		                </geometry>
-				<material name="DarkBrown"/><!--rviz"/-->
+		<visual > <!-- dont put name otherwise gazebo discards color-->
+ 			  <origin rpy="0 0 0" xyz="$(arg pillar_posX) $(arg pillar_posY)  ${$(arg anchorZ) + $(arg pillar_posZ)} "/>
+			<geometry>
 			
-			</visual>
-			<collision>
- 				<origin rpy="0 0 0" xyz="$(arg pillar_posX) $(arg pillar_posY)  ${$(arg anchorZ) + $(arg pillar_posZ)} "/>
-				 <geometry>
-				 
-		                  <mesh filename="package://climbingrobot_description/meshes/ellipsoid.stl" scale="1 1 1"/>
-		                </geometry>
-			               
+	                  <mesh filename="package://climbingrobot_description/meshes/ellipsoid.stl" scale="1 1 1"/>
+	                </geometry>
+			 <material name="orange"/>
+		
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="$(arg pillar_posX) $(arg pillar_posY)  ${$(arg anchorZ) + $(arg pillar_posZ)} "/>
+			 <geometry>
+			 
+	                  <mesh filename="package://climbingrobot_description/meshes/ellipsoid.stl" scale="1 1 1"/>
+	                </geometry>			               
 
-		       </collision>
+	       </collision>
 
 		</link>
 
@@ -137,5 +137,8 @@
    	 <material>Gazebo/RockWall</material>
   	</gazebo>
 
+	<gazebo reference="pillar">
+   	 <material>Gazebo/RockWall</material>
+  	</gazebo>
 
 </robot>
