@@ -155,7 +155,7 @@
       <visual>
       <origin rpy="0 0 0" xyz="0 0 ${$(arg anchorZ)/2}"/>
      <geometry>
-           <cylinder radius="0.01" length="$(arg anchorZ)"/> <!--this is the rope-->
+           <cylinder radius="0.025" length="$(arg anchorZ)"/> <!--this is the rope-->
       </geometry>
  	      <material name="grey">
  	        <color rgba=".7 .7 .7 .5"/>
@@ -164,7 +164,7 @@
      <!--collision>
  	      <origin rpy="0 0 0" xyz="0 0 $(arg anchorZ)"/>
  	      <geometry>
- 	        <cylinder radius="0.01" length="${$(arg anchorZ)*2}"/> 
+ 	        <cylinder radius="0.025" length="${$(arg anchorZ)*2}"/> 
  	      </geometry>
  	      <material name="grey">
  	        <color rgba=".7 .7 .7 .5"/>
@@ -331,7 +331,7 @@
       <visual>
        	      <origin rpy="0 0 0" xyz="0 0 $(arg anchorZ)"/>
  	      <geometry>
- 	        <cylinder radius="0.01" length="${$(arg anchorZ)*2}"/> <!--this is the rope-->
+ 	        <cylinder radius="0.025" length="${$(arg anchorZ)*2}"/> <!--this is the rope-->
  	      </geometry>
  	      <material name="grey">
  	        <color rgba=".7 .7 .7 .5"/>
@@ -340,7 +340,7 @@
      <!--collision>
  	      <origin rpy="0 0 0" xyz="0 0 ${$(arg anchorZ)/2}"/> 
  	      <geometry>
- 	        <cylinder radius="0.01" length="$(arg anchorZ)"/>
+ 	        <cylinder radius="0.025" length="$(arg anchorZ)"/>
  	      </geometry>
  	      <material name="grey">
  	        <color rgba=".7 .7 .7 .5"/>
