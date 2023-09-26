@@ -11,6 +11,10 @@
        <arg name="spawn_2y" default="5."/>	
        <arg name="spawn_2z" default="20"/>	
        <arg name="obstacle" default="false"/>	
+	<arg name="obstacle_x" default="-0.5"/>	
+	<arg name="obstacle_y" default="2.5"/>	
+	<arg name="obstacle_z" default="-6"/>	
+
 
         <!-- send hyq urdf to param server -->
         <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/$(arg robot_name).xacro' 
@@ -23,7 +27,8 @@
 
 
 	<!--  load climb wall into param server-->	
-	<param name="climb_wall" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/climb_wall2.xacro'  anchorZ:=$(arg spawn_z)   obstacle:=$(arg obstacle) "/>
+	<param name="climb_wall" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/climb_wall2.xacro'  anchorZ:=$(arg spawn_z)   
+										obstacle:=$(arg obstacle) obstacle_locationX:=$(arg obstacle_x)  obstacle_locationY:=$(arg obstacle_y)  obstacle_locationZ:=$(arg obstacle_z)  "/>
 
 
         
