@@ -4,13 +4,29 @@
 	<arg name="rviz_conf" default="$(find climbingrobot_description)/rviz/conf.rviz"/>
 	<arg name="robot_name" default="climbingrobot2"/>
 	<arg name="obstacle" default="false"/>
-
+	<arg name="wall_inclination" default="0."/>
+	<arg name="obstacle_location_x" default="0."/>
+	<arg name="obstacle_location_y" default="0."/>
+	<arg name="obstacle_location_z" default="0."/>
+	<arg name="obstacle_size_x" default="0."/>
+	<arg name="obstacle_size_y" default="0."/>
+	<arg name="obstacle_size_z" default="0."/>
+                 
+                 
 	<env name="GAZEBO_MODEL_PATH" value="$(find climbingrobot_description)"/>
 
 	<!-- send hyq urdf to param server and spawn it -->
 	<include file="$(find climbingrobot_description)/launch/upload.launch">	
 		<arg name="robot_name" value="$(arg robot_name)" />
+		<arg name="wall_inclination" value="$(arg wall_inclination)" />
 		<arg name="obstacle" value="$(arg obstacle)" />
+		<arg name="obstacle_location_x" value="$(arg obstacle_location_x)" />
+		<arg name="obstacle_location_y" value="$(arg obstacle_location_y)" />
+		<arg name="obstacle_location_z" value="$(arg obstacle_location_z)" />
+		<arg name="obstacle_size_x" value="$(arg obstacle_size_x)" />
+		<arg name="obstacle_size_y" value="$(arg obstacle_size_y)" />
+		<arg name="obstacle_size_z" value="$(arg obstacle_size_z)" />
+
 	</include>
 
 	<node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args="0.1 0 0 0 0 0   /wall /world  200"/>

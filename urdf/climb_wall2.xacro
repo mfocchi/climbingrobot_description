@@ -48,7 +48,7 @@
   	     </inertial>
 
 		<visual > <!-- dont put name otherwise gazebo discards color-->
- 			<origin xyz="${$(arg anchorZ)/2 *sin($(arg wall_inclination))}  0 ${$(arg anchorZ)/2}" rpy="0  -$(arg wall_inclination) 0"/>
+ 			<origin xyz="${$(arg anchorZ)/2 *sin($(arg wall_inclination))}  0 ${$(arg anchorZ) * (1-0.5*cos($(arg wall_inclination)))}" rpy="0  -$(arg wall_inclination) 0"/>
 			<geometry>
 				<box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
 			</geometry>
@@ -56,7 +56,7 @@
 			
 		</visual>
 	        <collision name="box">
-		       <origin xyz="${$(arg anchorZ)/2 *sin($(arg wall_inclination))} 0 ${$(arg anchorZ)/2}" rpy="0  -$(arg wall_inclination) 0"/>
+		       <origin xyz="${$(arg anchorZ)/2 *sin($(arg wall_inclination))} 0 ${$(arg anchorZ) * (1-0.5*cos($(arg wall_inclination)))}" rpy="0  -$(arg wall_inclination) 0"/>
 		       <geometry>
  				<box size="0.1 $(arg anchorZ) $(arg anchorZ)"/>
 	        	</geometry>
