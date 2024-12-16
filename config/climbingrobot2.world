@@ -70,51 +70,16 @@
             </visual>
           </link>
     </model>
+
     
- <model name="set_camera_pose_model">
-  <link name="link">
-    <visual name="visual">
-      <geometry>
-        <empty/>
-      </geometry>
-      <plugin name="CameraSim" filename="libCameraSimPlugin.so"/>
-    </visual>
-  </link>
-</model>
-
-
-	
-
-   <!-- The <gui> section in world files might not always directly control the camera at startup. In Gazebo 11, this section might not automatically apply to the actual 3D camera view on launch.
-    Camera pose changes need to be applied to the actual Gazebo camera settings, not just the GUI section.-->
     
-
-  <!-- Camera settings inside world file -->
-  <model name="camera_model">
-    <static>false</static>
-    <link name="camera_link">
-      <pose>0 0 5 0 -0.5 0</pose> <!-- Camera position and rotation -->
-      <sensor name="camera" type="camera">
-        <pose>0 0 0 0 0 0</pose> <!-- Camera relative pose to the link -->
-        <camera>
-          <horizontal_fov>1.396</horizontal_fov>
-          <image>
-            <width>640</width>
-            <height>480</height>
-            <format>R8G8B8</format>
-          </image>
-          <clip>
-            <near>0.1</near>
-            <far>100.0</far>
-          </clip>
-        </camera>
-      </sensor>
-    </link>
-  </model>
-
-  <!-- Additional world elements -->
-
-</world>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+         <pose>5.2233 -14.1 20.0642 0 0.305796 1.6162</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
     
     
   </world>
