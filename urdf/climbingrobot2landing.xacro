@@ -913,6 +913,7 @@
 
    <xacro:include filename="$(find climbingrobot_description)/urdf/gazebo.urdf.xacro"/>
 
+   <xacro:include filename="$(find climbingrobot_description)/urdf/propellers.urdf.xacro"/>
    <xacro:climbingrobot_transmission/>
 
 </robot>
