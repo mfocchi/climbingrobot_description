@@ -74,9 +74,9 @@
     
     
     <gui fullscreen='0'>
-     <show_origin>false</show_origin>
+      <show_origin>false</show_origin>
       <camera name='user_camera'>
-         <pose>5.2233 -14.1 20.0642 0 0.305796 1.6162</pose>
+        <pose>5.40048 4.17131 5.17258 -0 -1.0778 -3.13898</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
