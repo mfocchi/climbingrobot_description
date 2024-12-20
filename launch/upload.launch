@@ -19,13 +19,13 @@
 	<arg name="obstacle_size_x" default="1.5"/>	
 	<arg name="obstacle_size_y" default="1.5"/>	
 	<arg name="obstacle_size_z" default="0.866"/>	
-		
-
+	<arg name="double_propeller" default="false"/>	
 
 
         <!-- send hyq urdf to param server -->
         <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find climbingrobot_description)/urdf/$(arg robot_name).xacro' 
-						task_period:=$(arg task_period)  anchorX:=$(arg spawn_x)  anchorY:=$(arg spawn_y) anchorZ:=$(arg spawn_z)  anchor2X:=$(arg spawn_2x)  anchor2Y:=$(arg spawn_2y)  anchor2Z:=$(arg spawn_2z)"/>
+						task_period:=$(arg task_period)  anchorX:=$(arg spawn_x)  anchorY:=$(arg spawn_y) anchorZ:=$(arg spawn_z)  
+						anchor2X:=$(arg spawn_2x)  anchor2Y:=$(arg spawn_2y)  anchor2Z:=$(arg spawn_2z) double_propeller:=$(arg double_propeller)"/>
 
 
         <!-- send hyq semantic description srdf to param server -->

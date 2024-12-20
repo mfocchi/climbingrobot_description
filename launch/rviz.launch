@@ -11,7 +11,8 @@
 	<arg name="obstacle_size_x" default="0."/>
 	<arg name="obstacle_size_y" default="0."/>
 	<arg name="obstacle_size_z" default="0."/>
-                 
+	<arg name="double_propeller" default="false"/>
+                          
                  
 	<env name="GAZEBO_MODEL_PATH" value="$(find climbingrobot_description)"/>
 
@@ -26,6 +27,8 @@
 		<arg name="obstacle_size_x" value="$(arg obstacle_size_x)" />
 		<arg name="obstacle_size_y" value="$(arg obstacle_size_y)" />
 		<arg name="obstacle_size_z" value="$(arg obstacle_size_z)" />
+		<arg name="double_propeller" value="$(arg double_propeller)" />
+
 
 	</include>
 
