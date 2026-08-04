@@ -498,16 +498,15 @@
     	</material>
     </visual>
     <!-- LOWER LEG LINK COLLISION -->
-    <collision>
+    <!--collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-       <!--mesh filename="package://climbingrobot_description/meshes/obj/with_foot/solo_lower_leg_left_side.obj" scale="1 1 1.5"/-->
+      <geometry> 
          <mesh filename="package://climbingrobot_description/meshes/alpine/alpine_body_rod.stl" scale="1 1 1"/>
       </geometry>
       <material name="grey">
         <color rgba="0.7 0.7 0.7 0.5"/>
       </material>
-    </collision>
+    </collision-->
     <!-- Bullet specific paramters -->
     <contact>
       <lateral_friction value="1.0"/>
